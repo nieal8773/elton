@@ -18,7 +18,6 @@ pipeline {
     }
 
     stage('Deploy') {
-      steps {
         input(
           message: 'Deploy?'
           ok 'Do it!'
@@ -27,8 +26,6 @@ pipeline {
           }
         echo "Deploying release ${RELEASE} to environment ${TARGET_ENVIRONMENT}"
       }
-    }
-
   }
   environment {
     RELEASE = '20.04'
