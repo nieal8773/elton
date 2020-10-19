@@ -1,12 +1,12 @@
 library identifier: 'jenkins-pipeline-demo-library@master', 
-        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/jenkins-pipeline-demo-library.git'])
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/nieal8773/elton.git'])
 
 pipeline {
     agent any
     stages {
         stage('Audit tools') {                        
             steps {
-                auditTools()
+                auditTools2()
             }
         }
     }
