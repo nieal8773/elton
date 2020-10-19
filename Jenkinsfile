@@ -1,19 +1,31 @@
 pipeline {
   agent any
   stages {
-    stage('stage1') {
+    stage('Build') {
+      agent any
+      environment {
+        LOG_LEVEL = 'INFO'
+      }
       steps {
-          echo "This is build $BUILD_NUMBER in demo $DEMO"
-          sh '''
-              echo "Using a multi-line shell step"
-              chmod +x test.sh
-              ./test.sh
-          '''    
+        echo 'Building release $RELEASE with log Level $LOG_LEVEL'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        echo 'Testing. I can see release $RELEASE'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        input(message: 'Deploy?', submitter: 'name', ok: 'Do it!', submitterParameter: 'TARGET_ENVIRONMENT')
+        echo 'Deploying release $RELEASE to environment $TARGET_ENVIRONMENT'
       }
     }
 
   }
   environment {
-    DEMO = '1'
+    RELEASE = '20.04'
   }
 }
