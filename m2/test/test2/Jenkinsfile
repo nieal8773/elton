@@ -31,5 +31,5 @@ pipeline {
   }
   environment {
     RELEASE = '20.04'
-  }
-}
+    }
+}  
