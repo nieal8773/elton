@@ -18,13 +18,14 @@ pipeline {
     }
 
     stage('Deploy') {
-        input(
+        input {
           message: 'Deploy?'
           ok 'Do it!'
           parameters {
             string(name: 'TARGET_ENVIRONMENT', defaultValue: 'PROD', description: 'Target deployment environment')
           }
-          steps {  
+        }
+        steps {  
         echo "Deploying release ${RELEASE} to environment ${TARGET_ENVIRONMENT}"
       }
   }
